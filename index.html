@@ -384,7 +384,7 @@
     <div class="card">
       <div class="img-grid">
         <figure><img src="image_4.png" alt="Hoodie front"><figcaption>Front</figcaption></figure>
-        <figure><img src="image_png.2" alt="Hoodie back"><figcaption>Back</figcaption></figure>
+        <figure><img src="image_2.png" alt="Hoodie back"><figcaption>Back</figcaption></figure>
       </div>
       <div class="card-body">
         <div class="card-tag">Class Hoodie</div>
@@ -402,7 +402,7 @@
         <figure><img src="image.png" alt="Varsity jacket front"><figcaption>Jacket Front</figcaption></figure>
         <figure><img src="image_3.png" alt="Varsity jacket back"><figcaption>Jacket Back</figcaption></figure>
         <figure><img src="image_4.png" alt="Hoodie front"><figcaption>Hoodie Front</figcaption></figure>
-        <figure><img src="image_png.2" alt="Hoodie back"><figcaption>Hoodie Back</figcaption></figure>
+        <figure><img src="image_2.png" alt="Hoodie back"><figcaption>Hoodie Back</figcaption></figure>
       </div>
       <div class="card-body">
         <div class="card-tag">Best Value · Jacket + Hoodie</div>
@@ -494,36 +494,28 @@
   const resultBox = document.getElementById('wheelResult');
   let currentRotation = 0;
 
-  function genCode(prefix){
-    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-    let s = '';
-    for(let i=0;i<4;i++) s += chars[Math.floor(Math.random()*chars.length)];
-    return 'G27-' + prefix + '-' + s;
-  }
+  const jacketCodes = ["FALCON125","GRANITE350","WOLF242","COBRA792","PULSE189","SABER532","STORM130","ATLAS323","WOLF617","TEMPO127","QUARTZ303","PULSE529","WOLF559","SABER384","TIGER877","VIPER814","IRON448","GRANITE259","PHOENIX881","SUMMIT204","ATLAS489","COBRA467","ARROW718","LION926","STORM847","KODA649","FALCON487","ATLAS665","ONYX949","ULTRA982","BOLT691","ZEPHYR821","ROYAL146","WOLF891","ONYX181","WOLF987","COBRA489","GRANITE564","BOLT266","BOLT463"];
+  const comboCodes = ["PHOENIX786","GRANITE818","ROYAL723","VIPER646","HAWK267","KODA488","GRANITE755","QUARTZ324","RIDGE963","BLAZE334","STORM924","RIDGE510","GRANITE167","PHOENIX680","RIDGE317","MYSTIC505","KODA246","LION242","HAWK862","QUARTZ651","LION864","SABER538","SABER508","BOLT324","THUNDER621","MYSTIC193","BLAZE981","FALCON256","VIPER911","IRON710","ROYAL494","EMBER710","KODA641","LION666","TIGER796","FALCON798","PULSE868","GRANITE887","SUMMIT214","ONYX545"];
 
-  async function logCode(code, prize){
-    try{
-      await window.storage.set('code:' + code, JSON.stringify({prize, ts: new Date().toISOString()}), true);
-    }catch(e){}
+  function pickCode(pool){
+    return pool[Math.floor(Math.random()*pool.length)];
   }
 
   function showResult(html){
     resultBox.innerHTML = '<div class="result-card">' + html + '</div>';
   }
 
-  async function alreadySpun(){
-    try{
-      const r = await window.storage.get('has-spun', false);
-      return !!(r && r.value === 'true');
-    }catch(e){ return false; }
+  function alreadySpun(){
+    try{ return localStorage.getItem('g27-has-spun') === 'true'; }
+    catch(e){ return false; }
   }
 
-  async function markSpun(){
-    try{ await window.storage.set('has-spun', 'true', false); }catch(e){}
+  function markSpun(){
+    try{ localStorage.setItem('g27-has-spun', 'true'); }catch(e){}
   }
 
-  spinBtn.addEventListener('click', async ()=>{
-    if(await alreadySpun()){
+  spinBtn.addEventListener('click', ()=>{
+    if(alreadySpun()){
       showResult('You\'ve already used your spin. Check your result, or reach out if you lost your code.');
       spinBtn.disabled = true;
       return;
@@ -539,56 +531,19 @@
     currentRotation += targetRotationRad*(180/Math.PI);
     canvas.style.transform = 'rotate(' + currentRotation + 'deg)';
 
-    setTimeout(async ()=>{
-      await markSpun();
+    setTimeout(()=>{
+      markSpun();
       if(!seg.win){
         showResult('Better luck next time — no discount this round, but thanks for spinning!');
       } else if(seg.win === 'jacket5'){
-        const code = genCode('JKT5');
-        await logCode(code, '5% off Jacket');
+        const code = pickCode(jacketCodes);
         showResult('5% off the Varsity Jacket! Enter this code at checkout:<br><span class="code">' + code + '</span>');
       } else if(seg.win === 'combo7'){
-        const code = genCode('CMB7');
-        await logCode(code, '7% off Combo');
+        const code = pickCode(comboCodes);
         showResult('7% off the Combo! Enter this code at checkout:<br><span class="code">' + code + '</span>');
       }
     }, 6500);
   });
-
-  // Hidden admin view: append ?admin=1 to the URL to see every code generated
-  if(new URLSearchParams(location.search).get('admin') === '1'){
-    (async ()=>{
-      const panel = document.createElement('div');
-      panel.style.cssText = 'position:fixed;inset:0;background:#0A0A0C;color:#EDEDEE;z-index:999;overflow:auto;padding:32px;font-family:monospace;';
-      panel.innerHTML = '<h2 style="font-family:Georgia,serif;">Spin Codes Log</h2><p style="opacity:0.6;">All discount codes generated on this site, most recent first.</p><div id="adminList">Loading…</div>';
-      document.body.appendChild(panel);
-      try{
-        const listRes = await window.storage.list('code:', true);
-        const keys = (listRes && listRes.keys) || [];
-        const rows = [];
-        for(const k of keys){
-          try{
-            const rec = await window.storage.get(k, true);
-            if(rec){
-              const data = JSON.parse(rec.value);
-              rows.push({code: k.replace('code:',''), prize: data.prize, ts: data.ts});
-            }
-          }catch(e){}
-        }
-        rows.sort((a,b)=> new Date(b.ts) - new Date(a.ts));
-        const listEl = document.getElementById('adminList');
-        if(rows.length === 0){
-          listEl.textContent = 'No codes generated yet.';
-        } else {
-          listEl.innerHTML = '<table style="width:100%;border-collapse:collapse;"><tr style="text-align:left;border-bottom:1px solid rgba(237,237,238,0.2);"><th style="padding:8px;">Code</th><th style="padding:8px;">Prize</th><th style="padding:8px;">Time</th></tr>' +
-            rows.map(r=>'<tr style="border-bottom:1px solid rgba(237,237,238,0.08);"><td style="padding:8px;">'+r.code+'</td><td style="padding:8px;">'+r.prize+'</td><td style="padding:8px;">'+r.ts+'</td></tr>').join('') +
-            '</table>';
-        }
-      }catch(e){
-        document.getElementById('adminList').textContent = 'Could not load codes.';
-      }
-    })();
-  }
 })();
 </script>
 
