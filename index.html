@@ -1,272 +1,596 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class of 2027 Jackets</title>
-    <style>
-        :root {
-            --primary: #ec4899;
-            --secondary: #8b5cf6;
-            --accent: #3b82f6;
-            --success: #10b981;
-            --bg-gradient: linear-gradient(135deg, #090d16 0%, #1a0b2e 50%, #0f172a 100%);
-            --card-bg: rgba(255, 255, 255, 0.07);
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-gradient);
-            color: #f8fafc;
-            margin: 0;
-            padding: 15px 10px;
-            text-align: center;
-        }
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 2px;
-            background: linear-gradient(90deg, #ff758c, #ff7eb3, #a1c4fd, #c2e9fb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
-        }
-        p.subtitle {
-            color: #cbd5e1;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-            max-width: 900px;
-            margin: 0 auto 25px auto;
-        }
-        .card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 14px;
-            padding: 12px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-        }
-        .card h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.1rem;
-            color: #fff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-        .image-pair {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-        }
-        .image-pair div {
-            flex: 1;
-        }
-        .image-pair img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.2s;
-        }
-        .image-pair img:hover {
-            transform: scale(1.03);
-        }
-        .image-label {
-            font-size: 0.75rem;
-            color: #cbd5e1;
-            margin-top: 4px;
-            font-weight: 600;
-        }
-        .wheel-section {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid;
-            border-image: linear-gradient(135deg, #ff758c, #8b5cf6, #3b82f6) 1;
-            border-radius: 16px;
-            max-width: 450px;
-            margin: 0 auto;
-            padding: 20px;
-            box-shadow: 0 0 25px rgba(139, 92, 246, 0.3);
-        }
-        .wheel-container {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 15px auto;
-        }
-        .wheel {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 4px solid #fff;
-            position: relative;
-            overflow: hidden;
-            transition: transform 6s cubic-bezier(0.15, 0, 0.15, 1);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            background: conic-gradient(
-                #ff416c 0deg 120deg, 
-                #7f00ff 120deg 240deg, 
-                #00c6ff 240deg 360deg
-            );
-        }
-        .wheel-pointer {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-bottom: 20px solid #fbbf24;
-            z-index: 10;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-        }
-        .wheel-label {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            font-weight: bold;
-            font-size: 0.85rem;
-            color: white;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-        }
-        /* Positions for labels on the 3-slice wheel */
-        .w-slice-1 { transform: rotate(60deg); padding-top: 15px; }
-        .w-slice-2 { transform: rotate(180deg); padding-top: 15px; }
-        .w-slice-3 { transform: rotate(300deg); padding-top: 15px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GOENKAN · CLASS OF '27 — Batch Merch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0C;
+    --bg-2:#131316;
+    --bg-3:#1B1B1F;
+    --text:#EDEDEE;
+    --muted: rgba(237,237,238,0.55);
+    --accent:#B8935A;
+    --accent-soft: rgba(184,147,90,0.12);
+    --border: rgba(237,237,238,0.10);
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'Courier New', monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
 
-        button {
-            background: linear-gradient(135deg, #ff416c, #ff4b2b, #7f00ff);
-            background-size: 200% auto;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1.05rem;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
-            transition: 0.3s;
-        }
-        button:hover {
-            background-position: right center;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 65, 108, 0.6);
-        }
-        button:active {
-            transform: scale(0.95);
-        }
-        #wheel-status {
-            font-size: 0.9rem;
-            color: #f3e8ff;
-            margin-top: 12px;
-            font-weight: 600;
-        }
-    </style>
+  header.site-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 24px;
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    background:rgba(10,10,12,0.85);
+    backdrop-filter: blur(8px);
+    z-index:50;
+  }
+  .brand{
+    font-family:var(--font-display);
+    letter-spacing:0.01em;
+    font-size:1.2rem;
+    font-weight:700;
+  }
+  .brand span{color:var(--accent);}
+  .tagline{
+    font-family:var(--font-mono);
+    font-size:0.66rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  .hero{
+    padding:100px 24px 68px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+  }
+  .hero .eyebrow{
+    font-family:var(--font-mono);
+    font-size:0.7rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:20px;
+  }
+  .hero h1{
+    font-family:var(--font-display);
+    font-size:clamp(2.8rem, 7vw, 5.4rem);
+    line-height:1.02;
+    margin:0 0 22px;
+    font-weight:600;
+  }
+  .hero h1 em{ font-style:normal; color:var(--accent); }
+  .hero p{
+    max-width:480px;
+    margin:0 auto;
+    font-size:1rem;
+    line-height:1.65;
+    color:var(--muted);
+  }
+  .hero .scroll-cue{
+    margin-top:44px;
+    font-family:var(--font-mono);
+    font-size:0.68rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    opacity:0.6;
+  }
+
+  .wheel-section{
+    padding:80px 24px 92px;
+    text-align:center;
+    background:var(--bg-2);
+    border-bottom:1px solid var(--border);
+  }
+  .section-label{
+    font-family:var(--font-mono);
+    font-size:0.7rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:14px;
+  }
+  .wheel-section h2, .products h2, .outro h2{
+    font-family:var(--font-display);
+    font-size:clamp(1.9rem,4.5vw,2.7rem);
+    margin:0 0 12px;
+    font-weight:600;
+  }
+  .wheel-section .sub{
+    max-width:440px;
+    margin:0 auto 44px;
+    color:var(--muted);
+    font-size:0.95rem;
+    line-height:1.6;
+  }
+  .wheel-rig{
+    position:relative;
+    width:min(320px, 80vw);
+    margin:0 auto 30px;
+  }
+  .wheel-pointer{
+    position:absolute;
+    top:-14px;
+    left:50%;
+    transform:translateX(-50%);
+    width:0; height:0;
+    border-left:14px solid transparent;
+    border-right:14px solid transparent;
+    border-top:22px solid var(--accent);
+    z-index:5;
+    filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  }
+  canvas#wheelCanvas{
+    display:block;
+    width:100%;
+    height:auto;
+    border-radius:50%;
+    box-shadow:0 0 0 5px var(--bg-3), 0 0 0 7px var(--accent), 0 24px 60px rgba(0,0,0,0.6);
+    transition: transform 6.4s cubic-bezier(.1,.68,.14,1);
+  }
+  @media (prefers-reduced-motion: reduce){
+    canvas#wheelCanvas{ transition: transform 0.6s linear; }
+  }
+  .spin-btn{
+    font-family:var(--font-mono);
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    font-size:0.8rem;
+    padding:15px 36px;
+    border-radius:999px;
+    border:1px solid var(--accent);
+    background:var(--accent);
+    color:var(--bg);
+    font-weight:700;
+    cursor:pointer;
+    transition: transform 0.15s ease, opacity 0.2s ease;
+  }
+  .spin-btn:hover{ transform:translateY(-1px); }
+  .spin-btn:disabled{ opacity:0.35; cursor:not-allowed; transform:none; }
+  .wheel-result{ margin-top:26px; min-height:74px; }
+  .result-card{
+    display:inline-block;
+    padding:16px 22px;
+    border:1px solid var(--accent);
+    border-radius:10px;
+    background:var(--accent-soft);
+    font-size:0.92rem;
+    line-height:1.5;
+    max-width:340px;
+  }
+  .result-card .code{
+    display:inline-block;
+    margin-top:8px;
+    font-family:var(--font-mono);
+    font-size:1rem;
+    letter-spacing:0.06em;
+    color:var(--accent);
+    font-weight:700;
+  }
+  .odds-note{
+    margin-top:20px;
+    font-size:0.7rem;
+    color:var(--muted);
+    font-family:var(--font-mono);
+    opacity:0.7;
+  }
+
+  .products{ padding:84px 24px; }
+  .section-head{ text-align:center; margin-bottom:52px; }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:30px;
+    max-width:1080px;
+    margin:0 auto;
+  }
+  .card{
+    background:var(--bg-2);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .card:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .card.combo{ border-color:var(--accent); }
+
+  .img-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2px;
+    background:var(--border);
+  }
+  .img-grid figure{
+    margin:0;
+    position:relative;
+    background:var(--bg-3);
+  }
+  .img-grid img{
+    width:100%;
+    height:100%;
+    aspect-ratio:4/5;
+    object-fit:cover;
+  }
+  .img-grid figcaption{
+    position:absolute;
+    bottom:6px;
+    left:8px;
+    font-family:var(--font-mono);
+    font-size:0.6rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--text);
+    background:rgba(0,0,0,0.5);
+    padding:2px 7px;
+    border-radius:4px;
+  }
+
+  .card-body{
+    padding:24px 24px 28px;
+    display:flex;
+    flex-direction:column;
+    flex:1;
+  }
+  .card-tag{
+    font-family:var(--font-mono);
+    font-size:0.65rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:9px;
+  }
+  .card h3{
+    font-family:var(--font-display);
+    font-size:1.5rem;
+    font-weight:600;
+    margin:0 0 6px;
+  }
+  .card .sizes{ font-size:0.78rem; color:var(--muted); margin-bottom:18px; }
+  .price-row{ display:flex; align-items:baseline; gap:10px; margin-bottom:6px; }
+  .price{ font-family:var(--font-display); font-size:1.8rem; font-weight:700; }
+  .discount-note{ font-size:0.75rem; color:var(--accent); margin-bottom:20px; min-height:1.1em; }
+  .card .spacer{ flex:1; }
+  .cta{
+    display:block;
+    text-align:center;
+    padding:13px 18px;
+    border-radius:8px;
+    background:var(--bg-3);
+    border:1px solid var(--border);
+    color:var(--text);
+    text-decoration:none;
+    font-size:0.85rem;
+    font-weight:600;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .cta:hover{ background:var(--accent); border-color:var(--accent); color:var(--bg); }
+
+  .outro{
+    padding:100px 24px;
+    text-align:center;
+    background:var(--bg-2);
+    border-top:1px solid var(--border);
+  }
+  .outro h2{ margin-bottom:16px; }
+  .outro p{
+    max-width:420px;
+    margin:0 auto 34px;
+    color:var(--muted);
+    font-size:0.95rem;
+    line-height:1.6;
+  }
+  .outro .cta-big{
+    display:inline-block;
+    padding:15px 36px;
+    border-radius:999px;
+    background:var(--accent);
+    color:var(--bg);
+    text-decoration:none;
+    font-weight:700;
+    font-family:var(--font-mono);
+    font-size:0.8rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+  }
+
+  footer{
+    padding:34px 24px;
+    text-align:center;
+    font-family:var(--font-mono);
+    font-size:0.68rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+</style>
 </head>
 <body>
 
-    <h1>✨ CLASS OF 2027 DROP ✨</h1>
-    <p class="subtitle">⚡ Official High-Energy Custom Merch Collection ⚡</p>
+<header class="site-header">
+  <div class="brand">GOENKAN <span>· '27</span></div>
+  <div class="tagline">Batch Merch · Reservation Only</div>
+</header>
 
-    <!-- 2x2 Product Grid -->
-    <div class="grid">
-        <!-- Varsity Jacket -->
-        <div class="card">
-            <h3>Varsity Jacket</h3>
-            <div class="image-pair">
-                <div>
-                    <img src="image.png" alt="Varsity Front">
-                    <div class="image-label">Front</div>
-                </div>
-                <div>
-                    <img src="image_3.png" alt="Varsity Back">
-                    <div class="image-label">Back</div>
-                </div>
-            </div>
-        </div>
+<section class="hero">
+  <div class="eyebrow">The Official Class of '27 Drop</div>
+  <h1>ONE BATCH.<br>ONE <em>LEGACY.</em></h1>
+  <p>Varsity jacket, class hoodie, and the combo that gets you both — made for Goenkan, reserved by you.</p>
+  <div class="scroll-cue">↓ spin first, then shop ↓</div>
+</section>
 
-        <!-- Hoodie -->
-        <div class="card">
-            <h3>Custom Hoodie</h3>
-            <div class="image-pair">
-                <div>
-                    <img src="image_4.png" alt="Hoodie Front">
-                    <div class="image-label">Front</div>
-                </div>
-                <div>
-                    <img src="image_2.png" alt="Hoodie Back">
-                    <div class="image-label">Back</div>
-                </div>
-            </div>
-        </div>
+<section class="wheel-section" id="wheel">
+  <div class="section-label">Before You Shop</div>
+  <h2>Spin the Batch Wheel</h2>
+  <p class="sub">One spin per person. Land a discount code and apply it at checkout.</p>
+
+  <div class="wheel-rig">
+    <div class="wheel-pointer"></div>
+    <canvas id="wheelCanvas" width="640" height="640"></canvas>
+  </div>
+
+  <button class="spin-btn" id="spinBtn">Spin the Wheel</button>
+  <div class="wheel-result" id="wheelResult"></div>
+  <div class="odds-note">One spin per visitor — good luck</div>
+</section>
+
+<section class="products" id="shop">
+  <div class="section-head">
+    <div class="section-label">The Drop</div>
+    <h2>Reserve Your Merch</h2>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-grid">
+        <figure><img src="image.png" alt="Varsity jacket front"><figcaption>Front</figcaption></figure>
+        <figure><img src="image_3.png" alt="Varsity jacket back"><figcaption>Back</figcaption></figure>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Varsity Jacket</div>
+        <h3>Goenkan Varsity Jacket</h3>
+        <div class="sizes">Sizes available: XS – XXXL</div>
+        <div class="price-row"><span class="price">₹3,400</span></div>
+        <div class="discount-note">5% off with a winning spin code</div>
+        <div class="spacer"></div>
+        <a class="cta" href="https://forms.gle/b5uJBPbdb7mm1KZo6" id="jacketForm" target="_blank" rel="noopener">Reserve the Jacket</a>
+      </div>
     </div>
 
-    <!-- Dopamine Spin Wheel Section -->
-    <div class="wheel-section">
-        <h3>🎡 Mystery Wheel 🎡</h3>
-        <p style="font-size: 0.8rem; color: #cbd5e1; margin: 2px 0 10px 0;">You can only spin once per user!</p>
-        
-        <div class="wheel-container">
-            <div class="wheel-pointer"></div>
-            <div id="wheel" class="wheel">
-                <!-- Visual mock segments inside wheel text -->
-                <div style="position:relative; width:100%; height:100%;">
-                    <div style="position:absolute; top:20px; left:50%; transform:translateX(-50%); font-size:0.75rem; color:#fff; font-weight:bold; text-shadow:0 1px 2px #000;">🎁 Perk</div>
-                    <div style="position:absolute; bottom:25px; left:30px; font-size:0.75rem; color:#fff; font-weight:bold; text-shadow:0 1px 2px #000;">🔥 Drop</div>
-                    <div style="position:absolute; bottom:25px; right:30px; font-size:1.1rem; color:#fff; text-shadow:0 1px 2px #000;">❌</div>
-                </div>
-            </div>
-        </div>
-
-        <p id="wheel-status">Spin the wheel to unlock your mystery reward!</p>
-        <button id="spin-btn" onclick="spinWheel()">SPIN NOW 🔥</button>
+    <div class="card">
+      <div class="img-grid">
+        <figure><img src="image_4.png" alt="Hoodie front"><figcaption>Front</figcaption></figure>
+        <figure><img src="image_png.2" alt="Hoodie back"><figcaption>Back</figcaption></figure>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Class Hoodie</div>
+        <h3>Goenkan Class Hoodie</h3>
+        <div class="sizes">Sizes available: XS – XXXL</div>
+        <div class="price-row"><span class="price">₹3,100</span></div>
+        <div class="discount-note">&nbsp;</div>
+        <div class="spacer"></div>
+        <a class="cta" href="https://forms.gle/b5uJBPbdb7mm1KZo6" id="hoodieForm" target="_blank" rel="noopener">Reserve the Hoodie</a>
+      </div>
     </div>
 
-    <script>
-        function spinWheel() {
-            if (localStorage.getItem('mystery_wheel_used_2027')) {
-                alert("You can only spin once per user!");
-                return;
-            }
-            
-            // Mark as used immediately so they can't spam click
-            localStorage.setItem('mystery_wheel_used_2027', 'true');
-            
-            const wheel = document.getElementById('wheel');
-            const btn = document.getElementById('spin-btn');
-            const status = document.getElementById('wheel-status');
-            
-            btn.style.opacity = '0.5';
-            btn.style.pointerEvents = 'none';
-            status.innerText = "✨ Spinning with maximum energy... Good luck! ✨";
-            
-            // 6 seconds spin (Multiple full rotations + target slice offset)
-            // 3 slices total (120 degrees each). Let's land on slice 1 (Special Perk) -> random extra rotations
-            const randomRotation = 2160 + 60; // 6 full turns (360 * 6 = 2160) + landing angle
-            wheel.style.transform = `rotate(${randomRotation}deg)`;
-            
-            setTimeout(() => {
-                status.innerHTML = "🎉 <span style='color:#f43f5e; font-size:1.1rem;'>JACKPOT! Special Mystery Reward Unlocked!</span> 🎉";
-                btn.innerText = "REWARD CLAIMED ✅";
-            }, 6000);
-        }
+    <div class="card combo">
+      <div class="img-grid">
+        <figure><img src="image.png" alt="Varsity jacket front"><figcaption>Jacket Front</figcaption></figure>
+        <figure><img src="image_3.png" alt="Varsity jacket back"><figcaption>Jacket Back</figcaption></figure>
+        <figure><img src="image_4.png" alt="Hoodie front"><figcaption>Hoodie Front</figcaption></figure>
+        <figure><img src="image_png.2" alt="Hoodie back"><figcaption>Hoodie Back</figcaption></figure>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Best Value · Jacket + Hoodie</div>
+        <h3>The Full Combo</h3>
+        <div class="sizes">Sizes available: XS – XXXL</div>
+        <div class="price-row"><span class="price">₹5,900</span></div>
+        <div class="discount-note">7% off with a winning spin code</div>
+        <div class="spacer"></div>
+        <a class="cta" href="https://forms.gle/b5uJBPbdb7mm1KZo6" id="comboForm" target="_blank" rel="noopener">Reserve the Combo</a>
+      </div>
+    </div>
 
-        window.onload = function() {
-            if (localStorage.getItem('mystery_wheel_used_2027')) {
-                document.getElementById('wheel-status.innerHTML') = "✨ Reward already claimed! You can only spin once per user. ✨";
-                const btn = document.getElementById('spin-btn');
-                btn.innerText = "ALREADY SPUN";
-                btn.style.opacity = '0.5';
-                btn.style.pointerEvents = 'none';
+  </div>
+</section>
+
+<section class="outro">
+  <div class="section-label">That's The Whole Site</div>
+  <h2>You've Reached The End</h2>
+  <p>Congrats, you scrolled the whole way. That basically makes you part of the crew now — go reserve your jacket before the batch runs out.</p>
+  <a class="cta-big" href="#shop">Back To The Drop ↑</a>
+</section>
+
+<footer>
+  © 2026 Goenkan Class of '27 — Reserved by You, Made for Goenkan
+</footer>
+
+<script>
+(function(){
+  const segments = [
+    {label:"You Win... Nothing 😭", win:false},
+    {label:"You Win... Nothing 😭", win:false},
+    {label:"5% OFF JACKET", win:"jacket5"},
+    {label:"You Win... Nothing 😭", win:false},
+    {label:"You Win... Nothing 😭", win:false},
+    {label:"7% OFF COMBO", win:"combo7"},
+    {label:"You Win... Nothing 😭", win:false},
+    {label:"You Win... Nothing 😭", win:false},
+  ];
+
+  const canvas = document.getElementById('wheelCanvas');
+  const ctx = canvas.getContext('2d');
+  const size = canvas.width;
+  const center = size/2;
+  const radius = size/2 - 6;
+  const sliceAngle = (2*Math.PI)/segments.length;
+
+  const baseColors = ['#131316', '#1B1B1F'];
+  const winColor = '#B8935A';
+
+  function drawWheel(){
+    ctx.clearRect(0,0,size,size);
+    segments.forEach((seg, i)=>{
+      const start = i*sliceAngle - Math.PI/2;
+      const end = start + sliceAngle;
+      ctx.beginPath();
+      ctx.moveTo(center, center);
+      ctx.arc(center, center, radius, start, end);
+      ctx.closePath();
+      ctx.fillStyle = seg.win ? winColor : baseColors[i%2];
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(237,237,238,0.15)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.save();
+      ctx.translate(center, center);
+      ctx.rotate(start + sliceAngle/2);
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'middle';
+      ctx.font = seg.win ? '700 19px Arial, sans-serif' : '700 13px Arial, sans-serif';
+
+      const textX = radius - 20;
+      if(seg.win){
+        ctx.fillStyle = '#0A0A0C';
+        ctx.fillText(seg.label, textX, 0);
+      } else {
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = '#0A0A0C';
+        ctx.strokeText(seg.label, textX, 0);
+        ctx.fillStyle = '#EDEDEE';
+        ctx.fillText(seg.label, textX, 0);
+      }
+      ctx.restore();
+    });
+  }
+  drawWheel();
+
+  const spinBtn = document.getElementById('spinBtn');
+  const resultBox = document.getElementById('wheelResult');
+  let currentRotation = 0;
+
+  function genCode(prefix){
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let s = '';
+    for(let i=0;i<4;i++) s += chars[Math.floor(Math.random()*chars.length)];
+    return 'G27-' + prefix + '-' + s;
+  }
+
+  async function logCode(code, prize){
+    try{
+      await window.storage.set('code:' + code, JSON.stringify({prize, ts: new Date().toISOString()}), true);
+    }catch(e){}
+  }
+
+  function showResult(html){
+    resultBox.innerHTML = '<div class="result-card">' + html + '</div>';
+  }
+
+  async function alreadySpun(){
+    try{
+      const r = await window.storage.get('has-spun', false);
+      return !!(r && r.value === 'true');
+    }catch(e){ return false; }
+  }
+
+  async function markSpun(){
+    try{ await window.storage.set('has-spun', 'true', false); }catch(e){}
+  }
+
+  spinBtn.addEventListener('click', async ()=>{
+    if(await alreadySpun()){
+      showResult('You\'ve already used your spin. Check your result, or reach out if you lost your code.');
+      spinBtn.disabled = true;
+      return;
+    }
+
+    spinBtn.disabled = true;
+    const winIndex = Math.floor(Math.random()*segments.length);
+    const seg = segments[winIndex];
+
+    const targetSliceCenter = winIndex*sliceAngle + sliceAngle/2;
+    const fullSpins = 7;
+    const targetRotationRad = (fullSpins*2*Math.PI) - targetSliceCenter;
+    currentRotation += targetRotationRad*(180/Math.PI);
+    canvas.style.transform = 'rotate(' + currentRotation + 'deg)';
+
+    setTimeout(async ()=>{
+      await markSpun();
+      if(!seg.win){
+        showResult('Better luck next time — no discount this round, but thanks for spinning!');
+      } else if(seg.win === 'jacket5'){
+        const code = genCode('JKT5');
+        await logCode(code, '5% off Jacket');
+        showResult('5% off the Varsity Jacket! Enter this code at checkout:<br><span class="code">' + code + '</span>');
+      } else if(seg.win === 'combo7'){
+        const code = genCode('CMB7');
+        await logCode(code, '7% off Combo');
+        showResult('7% off the Combo! Enter this code at checkout:<br><span class="code">' + code + '</span>');
+      }
+    }, 6500);
+  });
+
+  // Hidden admin view: append ?admin=1 to the URL to see every code generated
+  if(new URLSearchParams(location.search).get('admin') === '1'){
+    (async ()=>{
+      const panel = document.createElement('div');
+      panel.style.cssText = 'position:fixed;inset:0;background:#0A0A0C;color:#EDEDEE;z-index:999;overflow:auto;padding:32px;font-family:monospace;';
+      panel.innerHTML = '<h2 style="font-family:Georgia,serif;">Spin Codes Log</h2><p style="opacity:0.6;">All discount codes generated on this site, most recent first.</p><div id="adminList">Loading…</div>';
+      document.body.appendChild(panel);
+      try{
+        const listRes = await window.storage.list('code:', true);
+        const keys = (listRes && listRes.keys) || [];
+        const rows = [];
+        for(const k of keys){
+          try{
+            const rec = await window.storage.get(k, true);
+            if(rec){
+              const data = JSON.parse(rec.value);
+              rows.push({code: k.replace('code:',''), prize: data.prize, ts: data.ts});
             }
+          }catch(e){}
         }
-    </script>
+        rows.sort((a,b)=> new Date(b.ts) - new Date(a.ts));
+        const listEl = document.getElementById('adminList');
+        if(rows.length === 0){
+          listEl.textContent = 'No codes generated yet.';
+        } else {
+          listEl.innerHTML = '<table style="width:100%;border-collapse:collapse;"><tr style="text-align:left;border-bottom:1px solid rgba(237,237,238,0.2);"><th style="padding:8px;">Code</th><th style="padding:8px;">Prize</th><th style="padding:8px;">Time</th></tr>' +
+            rows.map(r=>'<tr style="border-bottom:1px solid rgba(237,237,238,0.08);"><td style="padding:8px;">'+r.code+'</td><td style="padding:8px;">'+r.prize+'</td><td style="padding:8px;">'+r.ts+'</td></tr>').join('') +
+            '</table>';
+        }
+      }catch(e){
+        document.getElementById('adminList').textContent = 'Could not load codes.';
+      }
+    })();
+  }
+})();
+</script>
+
 </body>
 </html>
