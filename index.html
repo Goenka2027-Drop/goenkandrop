@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goenkan '27 | Exclusive Drop</title>
+  <style>
+    :root {
+      --bg-color: #0a0a0a;
+      --text-main: #f0f0f0;
+      --accent: #d4af37;
+      --card-bg: #1a1a1a;
+    }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #222;
+    }
+    h1 { font-size: 2.8rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px; text-align: center; }
+    h2 { font-size: 1.8rem; font-weight: 300; margin-bottom: 25px; text-align: center; }
+    p { font-size: 1rem; color: #aaa; text-align: center; max-width: 600px; line-height: 1.6; }
+    
+    .scroll-down {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      text-decoration: none;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+
+    /* Wheel Section */
+    .wheel-container { position: relative; width: 320px; height: 320px; margin: 30px auto; }
+    .wheel-pointer {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      width: 0; height: 0; 
+      border-left: 18px solid transparent; 
+      border-right: 18px solid transparent; 
+      border-top: 28px solid var(--accent);
+      z-index: 10;
+    }
+    #wheelCanvas {
+      width: 100%; height: 100%; border-radius: 50%; border: 4px solid #333;
+      transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+      box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    }
+
+    .btn {
+      background-color: var(--text-main); color: var(--bg-color);
+      padding: 14px 36px; font-size: 1.1rem; font-weight: bold;
+      border: none; border-radius: 30px; cursor: pointer; text-decoration: none; text-transform: uppercase;
+      transition: all 0.3s ease; margin-top: 20px; display: inline-block;
+    }
+    .btn:hover { background-color: var(--accent); color: #000; transform: scale(1.03); }
+    .btn:disabled { background-color: #444; color: #888; cursor: not-allowed; transform: none; }
+
+    #resultModal {
+      margin-top: 20px;
+      padding: 15px 25px;
+      border-radius: 10px;
+      background: #151515;
+      border: 1px solid #333;
+      text-align: center;
+      min-height: 50px;
+    }
+    .code-display {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 16px;
+      background: var(--accent);
+      color: #000;
+      font-family: monospace;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 5px;
+      letter-spacing: 2px;
+    }
+
+    /* Shop Section */
+    .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%; max-width: 1100px; }
+    .product-card { background: var(--card-bg); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid #222; }
+    .img-toggle { position: relative; width: 100%; aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: #000; margin-bottom: 15px; }
+    .img-toggle img { width: 100%; height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; transition: opacity 0.4s ease; }
+    .img-toggle img.back { opacity: 0; }
+    .img-toggle:hover img.back { opacity: 1; }
+    .img-toggle:hover img.front { opacity: 0; }
+    .size-info { font-size: 0.85rem; color: #888; margin-bottom: 15px; }
+
+    .outro-text { font-size: 2.2rem; font-weight: bold; text-align: center; line-height: 1.4; max-width: 700px; }
+  </style>
+</head>
+<body>
+
+  <section id="intro">
+    <h1>Goenkan Drop</h1>
+    <h2>Batch of 2027</h2>
+    <p>The exclusive collection. Varsity Jacket. Signature Hoodie. The Ultimate Combo. Built for the legacy.</p>
+    <a href="#wheel-section" class="scroll-down">Spin For Discounts ↓</a>
+  </section>
+
+  <section id="wheel-section">
+    <h2>The Mystery Spin</h2>
+    <p>Spin for an exclusive discount code to use on your reservation form.</p>
+    
+    <div class="wheel-container">
+      <div class="wheel-pointer"></div>
+      <canvas id="wheelCanvas" width="320" height="320"></canvas>
+    </div>
+    
+    <button class="btn" id="spinBtn" onclick="spinWheel()">SPIN THE WHEEL</button>
+    
+    <div id="resultModal" style="display: none;">
+      <div id="resultMessage" style="font-size: 1.1rem; color: #fff;"></div>
+      <div id="codeBox" style="display: none;">
+        <span style="font-size: 0.85rem; color: #aaa;">Copy this code for your reservation form:</span><br>
+        <div class="code-display" id="discountCode"></div>
+      </div>
+    </div>
+    <a href="#shop" class="scroll-down" style="margin-top: 25px;">Reserve Your Size ↓</a>
+  </section>
+
+  <section id="shop">
+    <h2>Reserve Your Fit</h2>
+    <p>Tap on images to view back details. Sizes available from XS to XXXL.</p>
+    
+    <div class="shop-grid">
+      <!-- Item 1: Varsity Jacket -->
+      <div class="product-card">
+        <div class="img-toggle">
+          <img src="image.png" alt="Varsity Jacket Front" class="front">
+          <img src="image_2.png" alt="Varsity Jacket Back" class="back">
+        </div>
+        <h3>The '27 Varsity Jacket</h3>
+        <p class="size-info">Sizes: XS to XXXL</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe51YUmJQSu8yrHT6Ht9wf7zrMAjYqS7ythaMN_CErGrjPFvw/viewform" target="_blank" class="btn">Reserve Now</a>
+      </div>
+
+      <!-- Item 2: Signature Hoodie -->
+      <div class="product-card">
+        <div class="img-toggle">
+          <img src="image_3.png" alt="Hoodie Front" class="front">
+          <img src="image_4.png" alt="Hoodie Back" class="back">
+        </div>
+        <h3>Signature Hoodie</h3>
+        <p class="size-info">Sizes: XS to XXXL</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe51YUmJQSu8yrHT6Ht9wf7zrMAjYqS7ythaMN_CErGrjPFvw/viewform" target="_blank" class="btn">Reserve Now</a>
+      </div>
+
+      <!-- Item 3: Combo -->
+      <div class="product-card">
+        <div class="img-toggle">
+          <img src="image.png" alt="Combo Item 1" class="front" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
+          <img src="image_3.png" alt="Combo Item 2" class="front" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);">
+          <img src="image_2.png" alt="Combo Item 1 Back" class="back" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
+          <img src="image_4.png" alt="Combo Item 2 Back" class="back" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);">
+        </div>
+        <h3>The Full Combo</h3>
+        <p class="size-info">Varsity + Hoodie (Best Value)</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe51YUmJQSu8yrHT6Ht9wf7zrMAjYqS7ythaMN_CErGrjPFvw/viewform" target="_blank" class="btn">Reserve Now</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="outro" style="border-bottom: none;">
+    <div class="outro-text">Don't be the only one shivering at the reunion.<br><span style="color: var(--accent);">Secure the drip.</span></div>
+    <a href="#shop" class="btn" style="margin-top: 30px;">Back To Top</a>
+  </section>
+
+  <script>
+    const slices = [
+      { label: "5% OFF JACKET", color: "#1e1e1e" },
+      { label: "₹400 OFF COMBO", color: "#111111" },
+      { label: "TRY AGAIN", color: "#282828" }
+    ];
+
+    const canvas = document.getElementById('wheelCanvas');
+    const ctx = canvas.getContext('2d');
+    const numSlices = slices.length;
+    const arcSize = (2 * Math.PI) / numSlices;
+    let currentRotation = 0;
+    let isSpinning = false;
+
+    function drawWheel() {
+      for (let i = 0; i < numSlices; i++) {
+        const angle = i * arcSize;
+        ctx.beginPath();
+        ctx.fillStyle = slices[i].color;
+        ctx.moveTo(160, 160);
+        ctx.arc(160, 160, 160, angle, angle + arcSize);
+        ctx.lineTo(160, 160);
+        ctx.fill();
+        ctx.strokeStyle = '#333';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.save();
+        ctx.translate(160, 160);
+        ctx.rotate(angle + arcSize / 2);
+        ctx.textAlign = "right";
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 13px sans-serif";
+        ctx.fillText(slices[i].label, 145, 5);
+        ctx.restore();
+      }
+    }
+
+    function generateUniqueCode(prefix) {
+      const randomNumber = Math.floor(1000 + Math.random() * 9000); 
+      return prefix + randomNumber;
+    }
+
+    function spinWheel() {
+      if (isSpinning) return;
+      isSpinning = true;
+
+      const spinBtn = document.getElementById('spinBtn');
+      spinBtn.disabled = true;
+      spinBtn.innerText = "SPINNING...";
+
+      const rand = Math.random();
+      let winningIndex = 2; 
+      let winType = "NONE";
+
+      if (rand < 0.09) {
+        winningIndex = 0; 
+        winType = "JACKET";
+      } else if (rand < 0.18) {
+        winningIndex = 1; 
+        winType = "COMBO";
+      }
+
+      const sliceDeg = 360 / numSlices;
+      const targetDegrees = (360 - (winningIndex * sliceDeg) - (sliceDeg / 2)) - 90;
+      const extraSpins = 1800; 
+      
+      currentRotation += extraSpins + (targetDegrees - (currentRotation % 360));
+      canvas.style.transform = `rotate(${currentRotation}deg)`;
+
+      setTimeout(() => {
+        const modal = document.getElementById('resultModal');
+        const msg = document.getElementById('resultMessage');
+        const codeBox = document.getElementById('codeBox');
+        const codeDisplay = document.getElementById('discountCode');
+
+        modal.style.display = 'block';
+
+        if (winType === "JACKET") {
+          const code = generateUniqueCode("GOENKA");
+          msg.innerText = "🎉 You won 5% OFF on your Varsity Jacket!";
+          codeDisplay.innerText = code;
+          codeBox.style.display = 'block';
+        } else if (winType === "COMBO") {
+          const code = generateUniqueCode("COMBO");
+          msg.innerText = "🎉 You won ₹400 OFF on the Full Combo!";
+          codeDisplay.innerText = code;
+          codeBox.style.display = 'block';
+        } else {
+          msg.innerText = "Unlucky this time! No discount unlocked.";
+          codeBox.style.display = 'none';
+        }
+        spinBtn.innerText = "SPUN";
+      }, 4000);
+    }
+    drawWheel();
+  </script>
+</body>
+</html>
