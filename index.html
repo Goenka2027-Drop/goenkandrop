@@ -1,285 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Goenkan '27 | Exclusive Drop</title>
-  <style>
-    :root {
-      --bg-color: #0a0a0a;
-      --text-main: #f0f0f0;
-      --accent: #d4af37;
-      --card-bg: #1a1a1a;
-    }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-    section {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 20px;
-      box-sizing: border-box;
-      border-bottom: 1px solid #222;
-    }
-    h1 { font-size: 2.8rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px; text-align: center; }
-    h2 { font-size: 1.8rem; font-weight: 300; margin-bottom: 25px; text-align: center; }
-    p { font-size: 1rem; color: #aaa; text-align: center; max-width: 600px; line-height: 1.6; }
-    
-    .scroll-down {
-      margin-top: 30px;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--accent);
-      text-decoration: none;
-      animation: bounce 2s infinite;
-    }
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-10px); }
-      60% { transform: translateY(-5px); }
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class of 2027 Jackets</title>
+    <style>
+        :root {
+            --primary: #ec4899;
+            --secondary: #8b5cf6;
+            --accent: #3b82f6;
+            --success: #10b981;
+            --bg-gradient: linear-gradient(135deg, #090d16 0%, #1a0b2e 50%, #0f172a 100%);
+            --card-bg: rgba(255, 255, 255, 0.07);
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-gradient);
+            color: #f8fafc;
+            margin: 0;
+            padding: 15px 10px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 2px;
+            background: linear-gradient(90deg, #ff758c, #ff7eb3, #a1c4fd, #c2e9fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
+        }
+        p.subtitle {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            max-width: 900px;
+            margin: 0 auto 25px auto;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            padding: 12px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+        .card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.1rem;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .image-pair {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+        .image-pair div {
+            flex: 1;
+        }
+        .image-pair img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.2s;
+        }
+        .image-pair img:hover {
+            transform: scale(1.03);
+        }
+        .image-label {
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+        .wheel-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid;
+            border-image: linear-gradient(135deg, #ff758c, #8b5cf6, #3b82f6) 1;
+            border-radius: 16px;
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.3);
+        }
+        .wheel-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 15px auto;
+        }
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            position: relative;
+            overflow: hidden;
+            transition: transform 6s cubic-bezier(0.15, 0, 0.15, 1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            background: conic-gradient(
+                #ff416c 0deg 120deg, 
+                #7f00ff 120deg 240deg, 
+                #00c6ff 240deg 360deg
+            );
+        }
+        .wheel-pointer {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 20px solid #fbbf24;
+            z-index: 10;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+        .wheel-label {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
+        /* Positions for labels on the 3-slice wheel */
+        .w-slice-1 { transform: rotate(60deg); padding-top: 15px; }
+        .w-slice-2 { transform: rotate(180deg); padding-top: 15px; }
+        .w-slice-3 { transform: rotate(300deg); padding-top: 15px; }
 
-    /* Wheel Section */
-    .wheel-container { position: relative; width: 320px; height: 320px; margin: 30px auto; }
-    .wheel-pointer {
-      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-      width: 0; height: 0; 
-      border-left: 18px solid transparent; 
-      border-right: 18px solid transparent; 
-      border-top: 28px solid var(--accent);
-      z-index: 10;
-    }
-    #wheelCanvas {
-      width: 100%; height: 100%; border-radius: 50%; border: 4px solid #333;
-      transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
-      box-shadow: 0 0 20px rgba(0,0,0,0.8);
-    }
-
-    .btn {
-      background-color: var(--text-main); color: var(--bg-color);
-      padding: 14px 36px; font-size: 1.1rem; font-weight: bold;
-      border: none; border-radius: 30px; cursor: pointer; text-decoration: none; text-transform: uppercase;
-      transition: all 0.3s ease; margin-top: 20px; display: inline-block;
-    }
-    .btn:hover { background-color: var(--accent); color: #000; transform: scale(1.03); }
-    .btn:disabled { background-color: #444; color: #888; cursor: not-allowed; transform: none; }
-
-    #resultModal {
-      margin-top: 20px;
-      padding: 15px 25px;
-      border-radius: 10px;
-      background: #151515;
-      border: 1px solid #333;
-      text-align: center;
-      min-height: 50px;
-    }
-    .code-display {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 6px 16px;
-      background: var(--accent);
-      color: #000;
-      font-family: monospace;
-      font-size: 1.2rem;
-      font-weight: bold;
-      border-radius: 5px;
-      letter-spacing: 2px;
-    }
-
-    /* Shop Section */
-    .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%; max-width: 1100px; }
-    .product-card { background: var(--card-bg); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid #222; }
-    .img-toggle { position: relative; width: 100%; aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: #000; margin-bottom: 15px; }
-    .img-toggle img { width: 100%; height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; transition: opacity 0.4s ease; }
-    .img-toggle img.back { opacity: 0; }
-    .img-toggle:hover img.back { opacity: 1; }
-    .img-toggle:hover img.front { opacity: 0; }
-    .size-info { font-size: 0.85rem; color: #888; margin-bottom: 15px; }
-
-    .outro-text { font-size: 2.2rem; font-weight: bold; text-align: center; line-height: 1.4; max-width: 700px; }
-  </style>
+        button {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b, #7f00ff);
+            background-size: 200% auto;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+            transition: 0.3s;
+        }
+        button:hover {
+            background-position: right center;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 65, 108, 0.6);
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        #wheel-status {
+            font-size: 0.9rem;
+            color: #f3e8ff;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
 
-  <section id="intro">
-    <h1>Goenkan Drop</h1>
-    <h2>Batch of 2027</h2>
-    <p>The exclusive collection. Varsity Jacket. Signature Hoodie. The Ultimate Combo. Built for the legacy.</p>
-    <a href="#wheel-section" class="scroll-down">Spin For Discounts ↓</a>
-  </section>
+    <h1>✨ CLASS OF 2027 DROP ✨</h1>
+    <p class="subtitle">⚡ Official High-Energy Custom Merch Collection ⚡</p>
 
-  <section id="wheel-section">
-    <h2>The Mystery Spin</h2>
-    <p>Spin for an exclusive discount code to use on your reservation form.</p>
-    
-    <div class="wheel-container">
-      <div class="wheel-pointer"></div>
-      <canvas id="wheelCanvas" width="320" height="320"></canvas>
-    </div>
-    
-    <button class="btn" id="spinBtn" onclick="spinWheel()">SPIN THE WHEEL</button>
-    
-    <div id="resultModal" style="display: none;">
-      <div id="resultMessage" style="font-size: 1.1rem; color: #fff;"></div>
-      <div id="codeBox" style="display: none;">
-        <span style="font-size: 0.85rem; color: #aaa;">Copy this code for your reservation form:</span><br>
-        <div class="code-display" id="discountCode"></div>
-      </div>
-    </div>
-    <a href="#shop" class="scroll-down" style="margin-top: 25px;">Reserve Your Size ↓</a>
-  </section>
-
-  <section id="shop">
-    <h2>Reserve Your Fit</h2>
-    <p>Tap on images to view back details. Sizes available from XS to XXXL.</p>
-    
-    <div class="shop-grid">
-      <!-- Item 1: Varsity Jacket -->
-      <div class="product-card">
-        <div class="img-toggle">
-          <img src="image.png" alt="Varsity Jacket Front" class="front">
-          <img src="image_2.png" alt="Varsity Jacket Back" class="back">
+    <!-- 2x2 Product Grid -->
+    <div class="grid">
+        <!-- Varsity Jacket -->
+        <div class="card">
+            <h3>Varsity Jacket</h3>
+            <div class="image-pair">
+                <div>
+                    <img src="image.png" alt="Varsity Front">
+                    <div class="image-label">Front</div>
+                </div>
+                <div>
+                    <img src="image_3.png" alt="Varsity Back">
+                    <div class="image-label">Back</div>
+                </div>
+            </div>
         </div>
-        <h3>The '27 Varsity Jacket</h3>
-        <p class="size-info">Sizes: XS to XXXL</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe51YUmJQSu8yrHT6Ht9wf7zrMAjYqS7ythaMN_CErGrjPFvw/viewform" target="_blank" class="btn">Reserve Now</a>
-      </div>
 
-      <!-- Item 2: Signature Hoodie -->
-      <div class="product-card">
-        <div class="img-toggle">
-          <img src="image_3.png" alt="Hoodie Front" class="front">
-          <img src="image_4.png" alt="Hoodie Back" class="back">
+        <!-- Hoodie -->
+        <div class="card">
+            <h3>Custom Hoodie</h3>
+            <div class="image-pair">
+                <div>
+                    <img src="image_4.png" alt="Hoodie Front">
+                    <div class="image-label">Front</div>
+                </div>
+                <div>
+                    <img src="image_2.png" alt="Hoodie Back">
+                    <div class="image-label">Back</div>
+                </div>
+            </div>
         </div>
-        <h3>Signature Hoodie</h3>
-        <p class="size-info">Sizes: XS to XXXL</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe51YUmJQSu8yrHT6Ht9wf7zrMAjYqS7ythaMN_CErGrjPFvw/viewform" target="_blank" class="btn">Reserve Now</a>
-      </div>
-
-      <!-- Item 3: Combo -->
-      <div class="product-card">
-        <div class="img-toggle">
-          <img src="image.png" alt="Combo Item 1" class="front" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
-          <img src="image_3.png" alt="Combo Item 2" class="front" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);">
-          <img src="image_2.png" alt="Combo Item 1 Back" class="back" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
-          <img src="image_4.png" alt="Combo Item 2 Back" class="back" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);">
-        </div>
-        <h3>The Full Combo</h3>
-        <p class="size-info">Varsity + Hoodie (Best Value)</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe51YUmJQSu8yrHT6Ht9wf7zrMAjYqS7ythaMN_CErGrjPFvw/viewform" target="_blank" class="btn">Reserve Now</a>
-      </div>
     </div>
-  </section>
 
-  <section id="outro" style="border-bottom: none;">
-    <div class="outro-text">Don't be the only one shivering at the reunion.<br><span style="color: var(--accent);">Secure the drip.</span></div>
-    <a href="#shop" class="btn" style="margin-top: 30px;">Back To Top</a>
-  </section>
+    <!-- Dopamine Spin Wheel Section -->
+    <div class="wheel-section">
+        <h3>🎡 Mystery Wheel 🎡</h3>
+        <p style="font-size: 0.8rem; color: #cbd5e1; margin: 2px 0 10px 0;">You can only spin once per user!</p>
+        
+        <div class="wheel-container">
+            <div class="wheel-pointer"></div>
+            <div id="wheel" class="wheel">
+                <!-- Visual mock segments inside wheel text -->
+                <div style="position:relative; width:100%; height:100%;">
+                    <div style="position:absolute; top:20px; left:50%; transform:translateX(-50%); font-size:0.75rem; color:#fff; font-weight:bold; text-shadow:0 1px 2px #000;">🎁 Perk</div>
+                    <div style="position:absolute; bottom:25px; left:30px; font-size:0.75rem; color:#fff; font-weight:bold; text-shadow:0 1px 2px #000;">🔥 Drop</div>
+                    <div style="position:absolute; bottom:25px; right:30px; font-size:1.1rem; color:#fff; text-shadow:0 1px 2px #000;">❌</div>
+                </div>
+            </div>
+        </div>
 
-  <script>
-    const slices = [
-      { label: "5% OFF JACKET", color: "#1e1e1e" },
-      { label: "₹400 OFF COMBO", color: "#111111" },
-      { label: "TRY AGAIN", color: "#282828" }
-    ];
+        <p id="wheel-status">Spin the wheel to unlock your mystery reward!</p>
+        <button id="spin-btn" onclick="spinWheel()">SPIN NOW 🔥</button>
+    </div>
 
-    const canvas = document.getElementById('wheelCanvas');
-    const ctx = canvas.getContext('2d');
-    const numSlices = slices.length;
-    const arcSize = (2 * Math.PI) / numSlices;
-    let currentRotation = 0;
-    let isSpinning = false;
-
-    function drawWheel() {
-      for (let i = 0; i < numSlices; i++) {
-        const angle = i * arcSize;
-        ctx.beginPath();
-        ctx.fillStyle = slices[i].color;
-        ctx.moveTo(160, 160);
-        ctx.arc(160, 160, 160, angle, angle + arcSize);
-        ctx.lineTo(160, 160);
-        ctx.fill();
-        ctx.strokeStyle = '#333';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        ctx.save();
-        ctx.translate(160, 160);
-        ctx.rotate(angle + arcSize / 2);
-        ctx.textAlign = "right";
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "bold 13px sans-serif";
-        ctx.fillText(slices[i].label, 145, 5);
-        ctx.restore();
-      }
-    }
-
-    function generateUniqueCode(prefix) {
-      const randomNumber = Math.floor(1000 + Math.random() * 9000); 
-      return prefix + randomNumber;
-    }
-
-    function spinWheel() {
-      if (isSpinning) return;
-      isSpinning = true;
-
-      const spinBtn = document.getElementById('spinBtn');
-      spinBtn.disabled = true;
-      spinBtn.innerText = "SPINNING...";
-
-      const rand = Math.random();
-      let winningIndex = 2; 
-      let winType = "NONE";
-
-      if (rand < 0.09) {
-        winningIndex = 0; 
-        winType = "JACKET";
-      } else if (rand < 0.18) {
-        winningIndex = 1; 
-        winType = "COMBO";
-      }
-
-      const sliceDeg = 360 / numSlices;
-      const targetDegrees = (360 - (winningIndex * sliceDeg) - (sliceDeg / 2)) - 90;
-      const extraSpins = 1800; 
-      
-      currentRotation += extraSpins + (targetDegrees - (currentRotation % 360));
-      canvas.style.transform = `rotate(${currentRotation}deg)`;
-
-      setTimeout(() => {
-        const modal = document.getElementById('resultModal');
-        const msg = document.getElementById('resultMessage');
-        const codeBox = document.getElementById('codeBox');
-        const codeDisplay = document.getElementById('discountCode');
-
-        modal.style.display = 'block';
-
-        if (winType === "JACKET") {
-          const code = generateUniqueCode("GOENKA");
-          msg.innerText = "🎉 You won 5% OFF on your Varsity Jacket!";
-          codeDisplay.innerText = code;
-          codeBox.style.display = 'block';
-        } else if (winType === "COMBO") {
-          const code = generateUniqueCode("COMBO");
-          msg.innerText = "🎉 You won ₹400 OFF on the Full Combo!";
-          codeDisplay.innerText = code;
-          codeBox.style.display = 'block';
-        } else {
-          msg.innerText = "Unlucky this time! No discount unlocked.";
-          codeBox.style.display = 'none';
+    <script>
+        function spinWheel() {
+            if (localStorage.getItem('mystery_wheel_used_2027')) {
+                alert("You can only spin once per user!");
+                return;
+            }
+            
+            // Mark as used immediately so they can't spam click
+            localStorage.setItem('mystery_wheel_used_2027', 'true');
+            
+            const wheel = document.getElementById('wheel');
+            const btn = document.getElementById('spin-btn');
+            const status = document.getElementById('wheel-status');
+            
+            btn.style.opacity = '0.5';
+            btn.style.pointerEvents = 'none';
+            status.innerText = "✨ Spinning with maximum energy... Good luck! ✨";
+            
+            // 6 seconds spin (Multiple full rotations + target slice offset)
+            // 3 slices total (120 degrees each). Let's land on slice 1 (Special Perk) -> random extra rotations
+            const randomRotation = 2160 + 60; // 6 full turns (360 * 6 = 2160) + landing angle
+            wheel.style.transform = `rotate(${randomRotation}deg)`;
+            
+            setTimeout(() => {
+                status.innerHTML = "🎉 <span style='color:#f43f5e; font-size:1.1rem;'>JACKPOT! Special Mystery Reward Unlocked!</span> 🎉";
+                btn.innerText = "REWARD CLAIMED ✅";
+            }, 6000);
         }
-        spinBtn.innerText = "SPUN";
-      }, 4000);
-    }
-    drawWheel();
-  </script>
+
+        window.onload = function() {
+            if (localStorage.getItem('mystery_wheel_used_2027')) {
+                document.getElementById('wheel-status.innerHTML') = "✨ Reward already claimed! You can only spin once per user. ✨";
+                const btn = document.getElementById('spin-btn');
+                btn.innerText = "ALREADY SPUN";
+                btn.style.opacity = '0.5';
+                btn.style.pointerEvents = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
+
